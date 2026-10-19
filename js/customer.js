@@ -5,7 +5,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const LS=(k,d)=>{try{return JSON.parse(localStorage.getItem('cust.'+k))??d}catch{return d}},SV=(k,v)=>localStorage.setItem('cust.'+k,JSON.stringify(v));
 const cfg=()=>window.SUPABASE_URL&&!/YOUR_/.test(window.SUPABASE_URL);
 const api=(p,o={})=>fetch(SUPABASE_URL.replace(/\/$/,'')+'/rest/v1/'+p,{...o,headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json',Prefer:'return=minimal'}}).then(async r=>{const t=await r.text();if(!r.ok)throw new Error(t||r.status);return t?JSON.parse(t):null});
-let menu=LS('menu',[]),set={store:'Our Restaurant',gst:5,cur:'₹',phone:'',...LS('set',{})},cart=[],sz='',last=LS('last',null),poll=null;
+let menu=LS('menu',[]),set={store:'Aristo Beans',gst:5,cur:'₹',phone:'',...LS('set',{})},cart=[],sz='',last=LS('last',null),poll=null;
 const table0=new URLSearchParams(location.search).get('table')||'';
 const form={tn:table0,cn:LS('name',''),cp:LS('phone',''),nt:''};
 const fmt=n=>set.cur+(+n||0).toFixed(2);
